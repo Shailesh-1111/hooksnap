@@ -33,8 +33,8 @@ if (dbString) {
     console.warn("WARNING: DATABASE_URL is not set in .env! Database features will not work.");
 }
 
-// 1. GET /homepage-config-data
-app.get('/homepage-config-data', async (req, res) => {
+// 1. GET /api/homepage-config-data
+app.get('/api/homepage-config-data', async (req, res) => {
     try {
         if (!pool) return res.status(500).json({ error: "Database not connected" });
 
@@ -57,8 +57,8 @@ app.get('/homepage-config-data', async (req, res) => {
     }
 });
 
-// 2. POST /visited-users
-app.post('/visited-users', async (req, res) => {
+// 2. POST /api/visited-users
+app.post('/api/visited-users', async (req, res) => {
     try {
         if (!pool) return res.status(500).json({ error: "Database not connected" });
         const { visitor_id } = req.body;
@@ -98,8 +98,8 @@ app.post('/visited-users', async (req, res) => {
     }
 });
 
-// 3. POST /early-access-users
-app.post('/early-access-users', async (req, res) => {
+// 3. POST /api/early-access-users
+app.post('/api/early-access-users', async (req, res) => {
     try {
         if (!pool) return res.status(500).json({ error: "Database not connected" });
 
@@ -127,7 +127,11 @@ app.post('/early-access-users', async (req, res) => {
     }
 });
 
-// Start Server
-app.listen(PORT, () => {
-    console.log(`Backend Server running on http://localhost:${PORT}`);
-});
+// Start Server Locally or Export for Vercel
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log(`Backend Server running on http://localhost:${PORT}`);
+    });
+}
+
+export default app;
