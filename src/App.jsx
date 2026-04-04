@@ -44,38 +44,38 @@ function App() {
   }, [contact, feedback]);
 
   useEffect(() => {
-    // 2. Fetch main config immediately for snappy UI
-    fetch(`${API_URL}/homepage-config-data`)
-      .then(res => {
-        if (!res.ok) throw new Error("API not ready");
-        return res.json();
-      })
-      .then(data => {
-        if (!data.error) {
-          setConfig(prev => ({
-            price_tier: data.price_tier || prev.price_tier,
-            number_of_registers: data.number_of_registers || prev.number_of_registers,
-            number_of_visits: data.number_of_visits || prev.number_of_visits,
-            selling_points: data.selling_points
-              ? (typeof data.selling_points === 'string' ? JSON.parse(data.selling_points) : data.selling_points)
-              : prev.selling_points,
-            dropdown_values: data.dropdown_values
-              ? (typeof data.dropdown_values === 'string' ? JSON.parse(data.dropdown_values) : data.dropdown_values)
-              : prev.dropdown_values,
-            text_content: data.text_content
-              ? (typeof data.text_content === 'string' ? JSON.parse(data.text_content) : data.text_content)
-              : prev.text_content
-          }));
-        }
-        setIsLoading(false);
-      })
-      .catch(err => {
-        console.log('Config fallback activated.', err);
-        setIsLoading(false);
-      });
-
-    // 3. Defer analytics API call slightly to respect critical rendering paths
+    // 2. Defer API calls to respect critical rendering paths for Lighthouse
     const loadTimer = setTimeout(() => {
+      fetch(`${API_URL}/homepage-config-data`)
+        .then(res => {
+          if (!res.ok) throw new Error("API not ready");
+          return res.json();
+        })
+        .then(data => {
+          if (!data.error) {
+            setConfig(prev => ({
+              price_tier: data.price_tier || prev.price_tier,
+              number_of_registers: data.number_of_registers || prev.number_of_registers,
+              number_of_visits: data.number_of_visits || prev.number_of_visits,
+              selling_points: data.selling_points
+                ? (typeof data.selling_points === 'string' ? JSON.parse(data.selling_points) : data.selling_points)
+                : prev.selling_points,
+              dropdown_values: data.dropdown_values
+                ? (typeof data.dropdown_values === 'string' ? JSON.parse(data.dropdown_values) : data.dropdown_values)
+                : prev.dropdown_values,
+              text_content: data.text_content
+                ? (typeof data.text_content === 'string' ? JSON.parse(data.text_content) : data.text_content)
+                : prev.text_content
+            }));
+          }
+          setIsLoading(false);
+        })
+        .catch(err => {
+          console.log('Config fallback activated.', err);
+          setIsLoading(false);
+        });
+
+      // 3. Register Visit securely via LocalStorage UUID
       let visitorId = localStorage.getItem('hooksnap_visitor_id');
       if (!visitorId) {
         visitorId = crypto.randomUUID();
