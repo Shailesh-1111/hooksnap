@@ -22,10 +22,10 @@ function App() {
       "Protects Ad Budget from Drop-offs"
     ],
     dropdown_values: [
-      { value: "3-6", label: "$3 - $6 (Lite Monitoring)" },
-      { value: "7", label: "$7 (The Founder Deal)" },
-      { value: "8-11", label: "$8 - $11 (Pro Monitoring)" },
-      { value: "12-15", label: "$12 - $15 (Elite Tier)" }
+      { value: "3.99-6.99", label: "$3.99 - $6.99" },
+      { value: "7.99", label: "$7.99" },
+      { value: "8.99-11.99", label: "$8.99 - $11.99" },
+      { value: "12.99-15.99", label: "$12.99 - $15.99" }
     ],
     text_content: {
       tag: "Active Checkout Monitoring",
