@@ -14,9 +14,9 @@ function App() {
 
   // Default configuration acting as fallback if API fails
   const [config, setConfig] = useState({
-    price_tier: '$7',
+    price_tier: '$7.99',
     number_of_registers: 142,
-    number_of_visits: 0,
+    number_of_visits: '***',
     selling_points: [
       "Instant Telegram & WhatsApp Alerts",
       "Protects Ad Budget from Drop-offs"
@@ -265,7 +265,7 @@ function App() {
 
       <footer className="mt-auto w-full max-w-7xl mx-auto px-6 py-4 text-center border-t border-slate-900/50">
         <p className="text-slate-600 text-[10px] uppercase tracking-widest font-semibold leading-loose">
-          &copy; 2026 HookSnap. Zero Dashboard. Zero Noise. 100% Security. {config.number_of_visits > 0 && `| Traffic: ${config.number_of_visits} Hits`}
+          &copy; 2026 HookSnap. Zero Dashboard. Zero Noise. 100% Security. {config.number_of_visits !== 0 && `| Traffic: ${config.number_of_visits} Hits`}
         </p>
       </footer>
     </div>
