@@ -181,7 +181,7 @@ function App() {
           <div className="relative z-10">
             <div className="flex justify-between items-start mb-8">
               <div>
-                <h3 className="text-lg md:text-xl font-bold text-white mb-1">Claim Founder Status</h3>
+                <h2 className="text-lg md:text-xl font-bold text-white mb-1">Claim Founder Status</h2>
                 <p className="text-slate-400 text-xs md:text-sm">
                   Limited to first <span className="font-bold text-white text-base md:text-lg">{config.text_content.founder_limit}</span> stores.
                 </p>
@@ -230,7 +230,7 @@ function App() {
                   </div>
                 )}
 
-                <button type="submit" className="w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-bold shadow-lg shadow-emerald-900/40 transition-all uppercase tracking-widest text-sm mt-2 active:scale-[0.98]">
+                <button type="submit" className="w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-slate-900 rounded-xl font-extrabold shadow-lg shadow-emerald-900/40 transition-all uppercase tracking-widest text-sm mt-2 active:scale-[0.98]">
                   Get Early Access
                 </button>
               </form>
