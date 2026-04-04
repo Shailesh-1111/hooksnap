@@ -31,7 +31,7 @@ function App() {
       tag: "Active Checkout Monitoring",
       heading1: "Stop Losing Sales to a",
       heading2: "Laggy Checkout",
-      tagline: "HookSnap is the \"Silent\" Guardian for Shopify stores. We monitor your checkout page(s) every 30 minutes.",
+      tagline: "HookSnap is the \"Silent\" Guardian for Shopify stores. We monitor your checkout page(s) every single minute.",
       founder_limit: "1k"
     }
   });
