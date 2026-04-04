@@ -50,6 +50,10 @@ app.get('/api/homepage-config-data', async (req, res) => {
             ? config.number_of_visits_display
             : config.number_of_visits;
 
+        // Vercel Edge caching (ISR Equivalent)
+        // s-maxage=60: Cache for 60 seconds at Vercel's Edge network
+        // stale-while-revalidate: Serve stale data instantly while fetching fresh data in the background
+        res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');
         res.json(config);
     } catch (err) {
         console.error(err);
