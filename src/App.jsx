@@ -10,7 +10,7 @@ function App() {
   const [feedbackError, setFeedbackError] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isShake, setIsShake] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Default configuration acting as fallback if API fails
   const [config, setConfig] = useState({
