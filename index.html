@@ -38,8 +38,19 @@
     content="HookSnap actively monitors your checkout pages and protects your ad budget from drop-offs." />
 </head>
 
-<body class="text-slate-200">
-  <div id="root"></div>
+<body class="text-slate-200" style="background-color: #020617; margin: 0;">
+  <div id="root">
+    <!-- Inline structural skeleton to secure ultra-fast FCP -->
+    <div style="min-height: 100vh; display: flex; flex-direction: column; font-family: system-ui, sans-serif;">
+      <nav
+        style="max-width: 80rem; width: 100%; margin: 0 auto; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <div style="width: 2.5rem; height: 2.5rem; background-color: #10b981; border-radius: 0.75rem;"></div>
+          <span style="font-size: 1.25rem; font-weight: 800; color: white;">HookSnap</span>
+        </div>
+      </nav>
+    </div>
+  </div>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 
