@@ -10,6 +10,7 @@ function App() {
   const [feedbackError, setFeedbackError] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isShake, setIsShake] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Default configuration acting as fallback if API fails
   const [config, setConfig] = useState({
@@ -30,7 +31,7 @@ function App() {
       tag: "Active Checkout Monitoring",
       heading1: "Stop Losing Sales to a",
       heading2: "Laggy Checkout",
-      tagline: "HookSnap is the \"Silent\" Guardian for Shopify stores. We monitor your checkout page(s) every single minutes.",
+      tagline: "HookSnap is the \"Silent\" Guardian for Shopify stores. We monitor your checkout page(s) every 30 minutes.",
       founder_limit: "1k"
     }
   });
@@ -66,8 +67,12 @@ function App() {
               : prev.text_content
           }));
         }
+        setIsLoading(false);
       })
-      .catch(err => console.log('Config fallback activated.', err));
+      .catch(err => {
+        console.log('Config fallback activated.', err);
+        setIsLoading(false);
+      });
 
     // 3. Defer analytics API call slightly to respect critical rendering paths
     const loadTimer = setTimeout(() => {
@@ -146,7 +151,7 @@ function App() {
         </div>
       </nav>
 
-      <main className="flex-grow max-w-7xl mx-auto w-full px-6 pt-2 pb-6 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <main className={`flex-grow max-w-7xl mx-auto w-full px-6 pt-2 pb-6 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center transition-opacity duration-700 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
 
         <div className="space-y-6 md:space-y-8 text-center lg:text-left">
           <div className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase">
